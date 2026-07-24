@@ -45,40 +45,44 @@ const services: Service[] = [
 
 export default function Services() {
   return (
-    <section id="services" className="relative py-24 lg:py-60 h-[100vh] ">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8  ">
-        <div className=" mx-auto max-w-2xl text-center">
-          <p className="text-lg font-semibold uppercase tracking-widest text-indigo-650">
+    <section id="services" className="relative py-20 sm:py-24 lg:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Heading */}
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-indigo-650">
             Services
           </p>
-          <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+
+          <h2 className="mt-4 text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl lg:text-5xl">
             Everything runs on one account
           </h2>
-          <p className="mt-4 text-balance text-lg leading-relaxed text-ink/60">
-            Three ways to make your day easier: pick one, or bring them all
-            together.
+
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-ink/60 sm:text-lg">
+            Three powerful services designed to simplify your everyday life.
+            Subscribe to one—or enjoy the convenience of having them all in a
+            single platform.
           </p>
         </div>
 
-        <div className="mt-36 grid grid-cols-1 gap-6 md:grid-cols-3">
+        {/* Cards */}
+        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-8">
           {services.map((service) => {
             const Icon = service.icon;
+
             return (
               <article
                 key={service.title}
-                className="group relative rounded-3xl border border-black/[0.06] bg-white p-8 shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:shadow-lift"
+                className="group flex h-full flex-col rounded-3xl border border-black/5 bg-white p-8 shadow-soft transition-all duration-300 hover:-translate-y-2 hover:shadow-lift"
               >
-                <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-gradient shadow-soft transition-transform duration-300 group-hover:scale-105">
-                  <Icon
-                    className="h-5 w-5 text-white"
-                    strokeWidth={2.25}
-                    aria-hidden="true"
-                  />
+                <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-gradient shadow-soft transition-transform duration-300 group-hover:scale-110">
+                  <Icon className="h-6 w-6 text-white" strokeWidth={2.25} />
                 </div>
-                <h3 className="text-lg font-semibold text-ink">
+
+                <h3 className="text-xl font-semibold text-ink">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-lg leading-relaxed text-ink/60">
+
+                <p className="mt-4 flex-grow text-base leading-7 text-ink/60">
                   {service.description}
                 </p>
               </article>
