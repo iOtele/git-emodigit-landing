@@ -12,8 +12,8 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="border-t border-black/5 bg-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="flex flex-col items-center justify-between gap-10 lg:flex-row">
+      <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+        <div className="flex flex-col items-center justify-between gap-8 lg:flex-row">
           <div className="text-center lg:text-left">
             <Link
               href="#"
@@ -38,7 +38,6 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Social */}
           <nav aria-label="Social media" className="flex items-center gap-4">
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -57,7 +56,6 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Bottom */}
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-black/5 pt-8 text-center text-sm text-ink/50 lg:flex-row lg:text-left">
           <div>
             <p>© 2026 Emo Media UK. All rights reserved.</p>
