@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Emo Media UK | Smart Home, Local Services & Global eSIM",
   description:
     "Connect your home appliances, hire trusted local workmen, and stay connected worldwide with our global eSIM.",
+  icons: [{ rel: "icon", url: "/logo.ico", type: "image/x-icon" }],
 };
 
 export default function RootLayout({
