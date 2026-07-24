@@ -1,6 +1,33 @@
-import { ArrowRight, Signal } from "lucide-react";
+"use client";
+
+import { ArrowRight, Loader2, Signal } from "lucide-react";
+import { useState } from "react";
+
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Hero() {
+  const [deviceName, setDeviceName] = useState("");
+  const [serialNumber, setSerialNumber] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    setIsSubmitting(false);
+    setDeviceName("");
+    setSerialNumber("");
+  };
+
   return (
     <section className="relative overflow-hidden pt-32 pb-24 lg:pt-40 lg:pb-32">
       <div className="mx-auto flex max-w-5xl flex-col items-center px-6 text-center lg:px-8">
@@ -23,13 +50,73 @@ export default function Hero() {
         </p>
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row">
-          <a
-            href="#pricing"
-            className="group inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-sm font-semibold text-white shadow-lift transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-650"
-          >
-            Get Started
-            <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-          </a>
+          <Dialog>
+            <DialogTrigger className="group inline-flex items-center gap-2 rounded-full bg-ink px-8 py-4 text-sm font-semibold text-white shadow-lift transition-all duration-300 hover:-translate-y-1 hover:bg-indigo-650">
+              Get Started
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+            </DialogTrigger>
+
+            <DialogContent className="sm:max-w-md">
+              <DialogHeader>
+                <DialogTitle>Get Started with Emo Media UK</DialogTitle>
+                <DialogDescription>
+                  Choose the service you&apos;re interested in and we&apos;ll
+                  help you get started.
+                </DialogDescription>
+              </DialogHeader>
+
+              <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="device-name"
+                    className="text-sm font-medium text-ink"
+                  >
+                    Name of Device
+                  </label>
+                  <input
+                    id="device-name"
+                    value={deviceName}
+                    onChange={(event) => setDeviceName(event.target.value)}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    placeholder="Enter device name"
+                    required
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="serial-number"
+                    className="text-sm font-medium text-ink"
+                  >
+                    Serial Number of Device
+                  </label>
+                  <input
+                    id="serial-number"
+                    value={serialNumber}
+                    onChange={(event) => setSerialNumber(event.target.value)}
+                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    placeholder="Enter serial number"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex w-full items-center justify-center rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-indigo-650 disabled:cursor-not-allowed disabled:opacity-70"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
+                </button>
+              </form>
+            </DialogContent>
+          </Dialog>
 
           <a
             href="#services"
